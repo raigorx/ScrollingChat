@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Learning Scroll</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="scrollbar.css">
+    <style>
+      body{
+        color:white;
+        background: url(https://source.unsplash.com/random);
+        background-size:cover;
+      }
+      main,article {
+        /*border: solid;*/
+        border-radius: 0.3em;
+        width:100%;
+      }
+
+      main{
+              margin: 0 auto;
+              max-width: 600px;
+              overflow: scroll;
+              padding:0.4em;
+              background: -webkit-linear-gradient(#000000, #434343);
+              background: -o-linear-gradient(#000000, #434343);
+              background: linear-gradient(#000000, #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+              max-height: 98vh;
+              min-height: 98vh;
+              overflow-y: scroll;
+              overflow-x: hidden;
+            }
+
+      article{
+        max-width: 367px;
+        background: linear-gradient(to right, #141e30, #243b55); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        padding: 0.4em;
+      }
+
+      article:nth-child(odd){
+        margin:1em 0 0 0;
+        float:right;
+      }
+
+      article:nth-child(even){
+        margin:0.2em 0 0 0;
+        float:left;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+
+    </main>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/soundmanager2/2.97a.20150601/script/soundmanager2-nodebug-jsmin.js"></script>
+    <script type="text/javascript">
+      
+      fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=20')
+        .then(response=>{
+          return response.json()
+        })
+        .then(data=>{
+          soundOdd = soundManager.createSound({
+            url: 'http://soundbible.com/mp3/sms-alert-3-daniel_simon.mp3'
+          })
+
+          soundEven = soundManager.createSound({
+            url: 'http://soundbible.com/mp3/sms-alert-1-daniel_simon.mp3'
+          })
+
+          data.map((loremText,index)=>{
+            let msg = document.createElement("article")
+            msg.innerHTML=loremText
+            msg.className='animated bounceInDown'
+            //console.log(msg)
+
+            setTimeout(()=>{
+              let main = document.getElementsByTagName('main')[0]
+              main.appendChild(msg)
+              main.scrollTop= main.scrollHeight
+              index % 2 ? soundOdd.play() : soundEven.play()
+            },(index+1)*1000);
+          })
+        })
+
+    </script>
+  </body>
+</html>
