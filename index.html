@@ -12,7 +12,7 @@
         background: url(https://source.unsplash.com/random);
         background-size:cover;
       }
-      main,article {
+      main,p {
         /*border: solid;*/
         border-radius: 0.3em;
         width:100%;
@@ -32,18 +32,18 @@
               overflow-x: hidden;
             }
 
-      article{
+      p{
         max-width: 367px;
         background: linear-gradient(to right, #141e30, #243b55); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         padding: 0.4em;
       }
 
-      article:nth-child(odd){
+      p:nth-child(odd){
         margin:1em 0 0 0;
         float:right;
       }
 
-      article:nth-child(even){
+      p:nth-child(even){
         margin:0.2em 0 0 0;
         float:left;
       }
@@ -55,14 +55,14 @@
     </main>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/soundmanager2/2.97a.20150601/script/soundmanager2-nodebug-jsmin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/soundmanager2/2.97a.20150601/script/soundmanager2-nodebug-jsmin.js">
+    </script>
     <script type="text/javascript">
       
-      fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=20')
-        .then(response=>{
-          return response.json()
-        })
-        .then(data=>{
+      (async function init() {
+        try {
+          let response = await fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=20')
+          let data = await response.json()
           soundOdd = soundManager.createSound({
             url: 'http://soundbible.com/mp3/sms-alert-3-daniel_simon.mp3'
           })
@@ -71,8 +71,8 @@
             url: 'http://soundbible.com/mp3/sms-alert-1-daniel_simon.mp3'
           })
 
-          data.map((loremText,index)=>{
-            let msg = document.createElement("article")
+          data.forEach((loremText,index)=>{
+            let msg = document.createElement("p")
             msg.innerHTML=loremText
             msg.className='animated bounceInDown'
             //console.log(msg)
@@ -83,8 +83,11 @@
               main.scrollTop= main.scrollHeight
               index % 2 ? soundOdd.play() : soundEven.play()
             },(index+1)*1000);
-          })
-        })
+          }) 
+        } catch(e) {
+          console.error(e)
+        }
+      })()
 
     </script>
   </body>
