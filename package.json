@@ -1,0 +1,25 @@
+{
+  "name": "scrollingchat",
+  "version": "1.0.0",
+  "description": "Learning scroll DOM and frontend development",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raigorx/ScrollingChat.git"
+  },
+  "keywords": [
+    "example",
+    "scroll",
+    "dom",
+    "frontend"
+  ],
+  "author": "Raigorx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raigorx/ScrollingChat/issues"
+  },
+  "homepage": "https://github.com/raigorx/ScrollingChat#readme"
+}

@@ -1,0 +1,57 @@
+body{
+  color:white;
+  background: url(https://source.unsplash.com/random);
+  background-size:cover;
+}
+main,p {
+  /*border: solid;*/
+  border-radius: 0.3em;
+}
+
+main{
+        margin: 0 auto;
+        max-width: 600px;
+        /* overflow: visible; */
+        padding:0.4em;
+        background: -webkit-linear-gradient(#000000, #434343);
+        background: -o-linear-gradient(#000000, #434343);
+        background: linear-gradient(#000000, #434343); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        max-height: 100vh;
+        min-height: 100vh;
+        /* overflow-y: hidden; */
+        overflow-x: hidden;
+        /* width:100%; */
+      }
+
+main::after {
+    /* content: ""; */
+    clear: both;
+    display: table;
+}
+
+p{
+  max-width: 367px;
+  background: linear-gradient(to right, #141e30, #243b55); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width:100%;
+  margin: 1em auto 1em auto;
+}
+
+
+
+@media only screen and (min-width: 440px) {
+  main {
+    overflow-y: visible;
+  }
+  p {
+    padding: 0.4em;
+  }
+  p:nth-child(odd){
+    margin: 1em 0 1em 0;
+    float:right;
+  }
+
+  p:nth-child(even){
+    margin:0.2em 0 0 0; 
+    float:left;
+  }
+}
